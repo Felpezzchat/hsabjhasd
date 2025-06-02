@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Salon Management System - Skeleton</title>
-    <!--
-        SECURITY NOTE:
-        The Content-Security-Policy below is a basic example.
+    <!-- 
+        SECURITY NOTE: 
+        The Content-Security-Policy below is a basic example. 
         For a production app, you should make it as restrictive as possible.
         'unsafe-inline' for styles might be okay for simple apps but consider removing it.
         'script-src 'self'' means only scripts from the same origin (your app files) can run.
         If you use external CDNs or inline scripts heavily, you'll need to adjust this.
     -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http://localhost:5001;">
-
-    <!--
+    
+    <!-- 
         Path to main.css:
-        If this index.html is in 'project_root/app/index.html',
+        If this index.html is in 'project_root/app/index.html', 
         and main.css is in 'project_root/app/styles/main.css',
         then the path should be 'styles/main.css'.
         Since this skeleton HTML is in 'skeletons/', and we assume 'styles/' is in 'app/',
@@ -23,7 +23,7 @@
         However, Electron usually serves from the directory where index.html is.
         For this skeleton, let's assume it will be copied to 'app/index.html' eventually.
     -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css"> 
     <style>
         /* Basic inline styles for skeleton functionality, supplement to main.css */
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
@@ -58,7 +58,7 @@
 <body>
     <h1>Salon Management System - Skeleton</h1>
     <div id="message">Loading application status...</div>
-
+    
     <hr>
 
     <h2>Clients</h2>
@@ -96,8 +96,8 @@
         <button id="ipcTestButton">Send Message to Main</button>
         <p id="ipcResponse">No response yet.</p>
     </div>
-
-    <!--
+    
+    <!-- 
         Path to renderer.js:
         Similar to CSS, if this index.html is in 'project_root/app/index.html',
         and renderer.js is in 'project_root/app/scripts/renderer.js',

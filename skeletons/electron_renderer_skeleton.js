@@ -38,7 +38,7 @@ async function fetchClients() {
       throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
     }
     const clients = await response.json();
-
+    
     clientList.innerHTML = ''; // Clear existing list (e.g., "Loading clients...")
     if (clients.length === 0) {
         const listItem = document.createElement('li');
@@ -94,11 +94,11 @@ function setupAddClientForm() {
                 if (!response.ok) {
                     throw new Error(responseData.error || `HTTP error! status: ${response.status}`);
                 }
-
+                
                 console.log('Client added:', responseData);
                 formMessage.textContent = `Client "${responseData.name}" added successfully with ID ${responseData.id}!`;
                 formMessage.style.color = 'green';
-
+                
                 nameInput.value = ''; // Clear form
                 emailInput.value = '';
                 phoneInput.value = ''; // Clear phone

@@ -1,0 +1,200 @@
+/* app/styles/main.css */
+html, body {
+    height: 100%; /* Ensure html and body take full height */
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f8f9fa; /* A lighter grey for the overall background */
+    color: #212529; /* Default Bootstrap text color */
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Stack navbar and content area vertically */
+}
+
+.navbar {
+    /* Bootstrap handles most navbar styling */
+    /* Customizations can go here if needed, e.g., specific height or shadow */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    flex-shrink: 0; /* Prevent navbar from shrinking if content is too large */
+}
+
+/* Make sure the main content area takes up available space */
+#main-content-area {
+    flex-grow: 1; /* Allows this element to grow and fill available space */
+    padding: 20px;
+    /* background-color: #ffffff; */ /* White background for the content area */
+    /* border-radius: 0; */ /* Remove radius if it's meant to be edge-to-edge within container */
+    /* box-shadow: 0 0 15px rgba(0,0,0,0.05); */ /* Subtle shadow for content area */
+    overflow-y: auto; /* Add scroll to content area if it overflows */
+}
+
+/* Styling for Bootstrap container if used directly under body, but we use #main-content-area */
+.container, .container-fluid {
+    /* Default Bootstrap padding is fine, customize if needed */
+}
+
+h1, h2, h3 {
+    color: #343a40; /* Darker grey for headers */
+}
+
+/* Example of custom styling for client list items if needed beyond Bootstrap */
+.list-group-item strong {
+    color: #0056b3; /* Example: different color for client name */
+}
+
+.list-group-item small {
+    font-size: 0.85em;
+}
+
+/* Alert styling (Bootstrap usually handles this well) */
+#message.alert { /* This is the general message div in index.html */
+    margin-top: 15px;
+}
+
+/* General alert styling that might be dynamically added */
+.alert {
+    /* Bootstrap default styling is usually good */
+}
+
+/* Button styling - Bootstrap provides good defaults */
+.btn-primary {
+    background-color: #007bff; /* Standard Bootstrap primary */
+    border-color: #007bff;
+}
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Specific styling for navigation links if needed */
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    /* color: #ffffff !important; */ /* Example: Make active link white on dark navbar */
+}
+
+/* Add a subtle hover effect for nav items */
+.navbar-nav .nav-link:hover {
+    /* color: #e9ecef !important; */ /* Lighter color on hover for dark navbar */
+}
+
+/* Utility classes if needed */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Common table cell styling */
+#clientsTable th, #clientsTable td,
+#servicesTable th, #servicesTable td,
+#appointmentsTable th, #appointmentsTable td,
+#productsTable th, #productsTable td { /* Apply to all tables */
+    vertical-align: middle; /* Align text vertically in table cells */
+}
+
+.modal-body .form-label span.text-danger { /* Ensure asterisk for required fields is visible and red */
+    font-weight: bold;
+    /* color: #dc3545; */ /* Bootstrap's danger color, already applied by .text-danger */
+}
+
+/* Style for table action buttons to ensure they are spaced nicely */
+#clientsTable .btn-sm, 
+#servicesTable .btn-sm,
+#appointmentsTable .btn-sm,
+#productsTable .btn-sm { /* Apply to all tables */
+    /* Bootstrap's btn-sm is usually fine, add margin if needed */
+    /* margin-right: 0.25rem; */ 
+}
+#clientsTable .btn-sm:last-child,
+#servicesTable .btn-sm:last-child,
+#appointmentsTable .btn-sm:last-child,
+#productsTable .btn-sm:last-child { /* Apply to all tables */
+    /* margin-right: 0; */
+}
+
+/* Fixed top alerts for delete success/error messages */
+.alert.fixed-top {
+    top: 1rem; /* Adjust as needed from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1060; /* Ensure it's above Bootstrap modals (1050-1055) */
+    min-width: 300px; /* Ensure it's readable */
+    max-width: 90%;
+}
+
+/* Additions for appointments view filter bar */
+#appointmentFilterBar {
+    padding: 1rem; /* Use rem for better accessibility */
+    background-color: #f8f9fa; /* Light grey background, Bootstrap class bg-light */
+    border-radius: 0.375rem; /* Bootstrap's default border-radius for .rounded */
+    margin-bottom: 1.5rem !important; /* Ensure spacing */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Subtle shadow */
+}
+
+#appointmentFilterBar .form-label,
+#productFilterBar .form-label { /* Apply to product filter bar too */
+    margin-bottom: 0.25rem; /* Smaller margin for labels in filter bar */
+    font-size: 0.875em; /* Slightly smaller label text */
+}
+
+#appointmentFilterBar .form-control-sm, 
+#appointmentFilterBar .form-select-sm,
+#productFilterBar .form-control-sm,  /* Apply to product filter bar too */
+#productFilterBar .form-check-input { /* Apply to product filter bar too */
+    /* font-size: 0.875rem; */ /* Bootstrap .form-control-sm already handles this */
+}
+
+#appointmentFilterBar .btn-sm,
+#productFilterBar .btn-sm { /* Apply to product filter bar too */
+    /* font-size: 0.875rem; */ /* Bootstrap .btn-sm already handles this */
+    /* Add more specific styling if needed */
+}
+
+/* Additions for products view filter bar */
+#productFilterBar {
+    padding: 1rem; 
+    background-color: #f8f9fa; 
+    border-radius: 0.375rem; 
+    margin-bottom: 1.5rem !important; 
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+
+/* Ensure table action buttons are aligned to the end */
+.table td.text-end, .table th.text-end {
+    text-align: right !important;
+}
+.table td.text-nowrap, .table th.text-nowrap {
+    white-space: nowrap !important;
+}
+
+/* Badge styling (Bootstrap provides good defaults) */
+.badge {
+    /* font-size: 0.8em; */ /* Adjust if needed */
+}
+
+/* Additions for client photos */
+#existingPhotosContainer .card {
+    transition: box-shadow .2s ease-in-out;
+}
+#existingPhotosContainer .card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; /* Bootstrap shadow example */
+}
+#existingPhotosContainer .card-img-top {
+    width: 100%;
+    height: 180px; /* Or use aspect-ratio for responsive height */
+    object-fit: cover; /* This will crop images to fit the fixed height */
+}
+#existingPhotosContainer .card-body {
+    font-size: 0.9rem; /* Slightly smaller text in photo cards */
+}
+#existingPhotosContainer .card-body .btn-danger {
+    font-size: 0.8rem; /* Smaller delete button */
+    padding: 0.15rem 0.4rem;
+}

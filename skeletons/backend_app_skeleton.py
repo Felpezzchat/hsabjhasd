@@ -63,7 +63,7 @@ def get_clients():
 def add_client():
     if not request.json or not 'name' in request.json:
         return jsonify({"error": "Missing name in request body"}), 400
-
+    
     new_client_data = request.json
     name = new_client_data['name']
     email = new_client_data.get('email')
@@ -125,7 +125,7 @@ if __name__ == '__main__':
     # `debug=True` is useful for development as it enables auto-reloading.
     # `host='0.0.0.0'` makes it accessible from any IP, useful if Electron runs in a VM or container for dev.
     # `host='127.0.0.1'` (default) is fine for most local Electron setups.
-
+    
     # To run this:
     # 1. Make sure Flask and other dependencies are installed: pip install Flask
     # 2. Navigate to the 'skeletons' directory.
@@ -136,7 +136,7 @@ if __name__ == '__main__':
     # If you want it inside 'skeletons/data', change BASE_DIR to os.path.dirname(__file__)
     # and DATA_DIR to os.path.join(BASE_DIR, 'data_local_to_skeleton')
     # However, the project structure implies data is at the root.
-
+    
     # Example of how the path is constructed:
     # __file__ (current file path) -> e.g., /path/to/project/skeletons/backend_app_skeleton.py
     # os.path.dirname(__file__) -> /path/to/project/skeletons
@@ -145,7 +145,7 @@ if __name__ == '__main__':
     # DATA_DIR -> /path/to/project/data
     # DATABASE_PATH -> /path/to/project/data/salon_data.sqlite
     # This matches the desired PROJECT_STRUCTURE.md
-
+    
     # If this script is moved to backend/run.py as per project structure:
     # BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) would still point to project root.
     # DATA_DIR = os.path.join(BASE_DIR, 'data') would correctly point to project_root/data/

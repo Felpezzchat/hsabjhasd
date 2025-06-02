@@ -1,0 +1,126 @@
+<!-- app/views/appointments-view.html -->
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Appointment Management</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button type="button" class="btn btn-sm btn-outline-primary" id="addAppointmentBtn">
+            <!-- Placeholder for icon, e.g., Bootstrap Icons: <i class="bi bi-calendar-plus"></i> -->
+            Schedule New Appointment
+        </button>
+    </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="row g-3 align-items-center mb-3 p-3 border bg-light rounded" id="appointmentFilterBar">
+    <div class="col-md-3">
+        <label for="filterStartDate" class="form-label">From Date:</label>
+        <input type="date" class="form-control form-control-sm" id="filterStartDate">
+    </div>
+    <div class="col-md-3">
+        <label for="filterEndDate" class="form-label">To Date:</label>
+        <input type="date" class="form-control form-control-sm" id="filterEndDate">
+    </div>
+    <div class="col-md-3">
+         <label for="filterAppointmentStatus" class="form-label">Status:</label>
+        <select class="form-select form-select-sm" id="filterAppointmentStatus">
+            <option value="" selected>All Statuses</option>
+            <option value="Scheduled">Scheduled</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="No-Show">No-Show</option>
+        </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="button" class="btn btn-sm btn-info me-2" id="applyAppointmentFiltersBtn">Apply</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" id="resetAppointmentFiltersBtn">Reset</button>
+    </div>
+</div>
+
+
+<!-- Appointment List Table -->
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-sm" id="appointmentsTable">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Service</th>
+                <th scope="col" class="text-end">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="appointmentsTableBody">
+            <!-- Appointment rows will be populated here by JavaScript -->
+            <tr><td colspan="7" class="text-center" id="appointmentsTableLoadingState">Loading appointments...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Add/Edit Appointment Modal (Bootstrap Modal) -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="appointmentForm" novalidate>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentModalLabel">Schedule New Appointment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="appointmentId">
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="appointmentCustomerModal" class="form-label">Customer <span class="text-danger">*</span></label>
+                            <select class="form-select" id="appointmentCustomerModal" required>
+                                <option value="" disabled selected>Loading customers...</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a customer.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="appointmentServiceModal" class="form-label">Service <span class="text-danger">*</span></label>
+                            <select class="form-select" id="appointmentServiceModal" required>
+                                <option value="" disabled selected>Loading services...</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a service.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="appointmentDateTimeModal" class="form-label">Date & Time <span class="text-danger">*</span></label>
+                            <input type="datetime-local" class="form-control" id="appointmentDateTimeModal" required>
+                            <div class="invalid-feedback">Please select a valid date and time.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="appointmentStatusModal" class="form-label">Status</label>
+                            <select class="form-select" id="appointmentStatusModal">
+                                <option value="Scheduled" selected>Scheduled</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                                <option value="No-Show">No-Show</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                     <div class="mb-3">
+                        <label for="appointmentPriceAtBookingModal" class="form-label">Price at Booking</label>
+                        <input type="number" class="form-control" id="appointmentPriceAtBookingModal" step="0.01" min="0" readonly 
+                               placeholder="Autofilled when service is selected">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="appointmentNotesModal" class="form-label">Notes</label>
+                        <textarea class="form-control" id="appointmentNotesModal" rows="2"></textarea>
+                    </div>
+                    
+                    <div id="appointmentFormAlert" class="alert mt-3" role="alert" style="display:none;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="saveAppointmentBtn">Save Appointment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

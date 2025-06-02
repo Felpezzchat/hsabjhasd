@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-selfcheck.json
+*.egg-info/
+dist/
+build/
+target/
+
+# Flask
+instance/
+.webassets-cache/
+# *.sqlite
+# *.sqlite3
+# For this project, the main salon_data.sqlite will be untracked by default.
+# If you want to commit it for development, comment out the next two lines.
+data/salon_data.sqlite
+data/salon_data.sqlite-journal
+
+# Secrets & Environment files
+.env
+*.env
+secrets.py
+config.pyc # Compiled config if it ever happens
+
+# Node / Electron
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+app/dist/ # Or wherever Electron builder outputs
+
+# Operating System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
