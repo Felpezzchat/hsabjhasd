@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Salon Management System - Skeleton</title>
+    <!--
+        SECURITY NOTE:
+        The Content-Security-Policy below is a basic example.
+        For a production app, you should make it as restrictive as possible.
+        'unsafe-inline' for styles might be okay for simple apps but consider removing it.
+        'script-src 'self'' means only scripts from the same origin (your app files) can run.
+        If you use external CDNs or inline scripts heavily, you'll need to adjust this.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http://localhost:5001;">
+
+    <!--
+        Path to main.css:
+        If this index.html is in 'project_root/app/index.html',
+        and main.css is in 'project_root/app/styles/main.css',
+        then the path should be 'styles/main.css'.
+        Since this skeleton HTML is in 'skeletons/', and we assume 'styles/' is in 'app/',
+        the path '../app/styles/main.css' would be more direct if running from skeletons.
+        However, Electron usually serves from the directory where index.html is.
+        For this skeleton, let's assume it will be copied to 'app/index.html' eventually.
+    -->
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Basic inline styles for skeleton functionality, supplement to main.css */
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        h1, h2 { color: #5D3FD3; /* A nice salon-like purple */ }
+        ul { list-style-type: none; padding: 0; }
+        li { background-color: #fff; border: 1px solid #ddd; margin-bottom: 8px; padding: 10px; border-radius: 4px; }
+        form div { margin-bottom: 10px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="tel"] { /* Added tel for phone */
+            width: calc(100% - 22px); /* Adjust for padding and border */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #5D3FD3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background-color: #4C2AA0; }
+        #message, #formMessage, #filePath, #ipcResponse { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        #formMessage.success { background-color: #e7f4e7; color: #096409; }
+        #formMessage.error { background-color: #f4e7e7; color: #a02c2c; }
+        .ipc-section button { background-color: #007bff; margin-top:5px;}
+        .ipc-section button:hover { background-color: #0056b3;}
+    </style>
+</head>
+<body>
+    <h1>Salon Management System - Skeleton</h1>
+    <div id="message">Loading application status...</div>
+
+    <hr>
+
+    <h2>Clients</h2>
+    <ul id="clientList">
+        <li>Loading clients from backend...</li>
+    </ul>
+
+    <hr>
+
+    <h2>Add New Client</h2>
+    <form id="addClientForm">
+        <div>
+            <label for="clientName">Name:</label>
+            <input type="text" id="clientName" name="clientName" required>
+        </div>
+        <div>
+            <label for="clientEmail">Email:</label>
+            <input type="email" id="clientEmail" name="clientEmail">
+        </div>
+        <div> <!-- Added Phone Field -->
+            <label for="clientPhone">Phone:</label>
+            <input type="tel" id="clientPhone" name="clientPhone">
+        </div>
+        <button type="submit">Add Client</button>
+        <div id="formMessage" role="status" aria-live="polite"></div>
+    </form>
+
+    <hr>
+
+    <div class="ipc-section">
+        <h2>IPC Tests (via Preload)</h2>
+        <button id="openFileButton">Open File Dialog</button>
+        <p id="filePath">No file selected.</p>
+
+        <button id="ipcTestButton">Send Message to Main</button>
+        <p id="ipcResponse">No response yet.</p>
+    </div>
+
+    <!--
+        Path to renderer.js:
+        Similar to CSS, if this index.html is in 'project_root/app/index.html',
+        and renderer.js is in 'project_root/app/scripts/renderer.js',
+        then the path should be 'scripts/renderer.js'.
+    -->
+    <script src="scripts/renderer.js"></script>
+</body>
+</html>
+```
+
+**Notes on this HTML Skeleton:**
+
+1.  **`Content-Security-Policy` (CSP):**
+    *   The provided CSP is a starting point. `default-src 'self'` is a good baseline.
+    *   `script-src 'self'` prevents loading scripts from external sources or inline scripts (unless 'unsafe-inline' is added, which is generally discouraged for scripts).
+    *   `style-src 'self' 'unsafe-inline'` allows stylesheets from the app's origin and inline `<style>` tags. For better security, avoid 'unsafe-inline' for styles by moving all CSS to external files.
+    *   `connect-src 'self' http://localhost:5001;` is important. It allows the renderer process to make `fetch` requests to itself (Electron's internal resources) and to `http://localhost:5001` (where the Flask backend is expected to run).
+    *   **You'll need to adjust this CSP based on actual needs** (e.g., if you load fonts or images from CDNs, or use other external resources).
+
+2.  **File Paths for CSS and JS:**
+    *   The paths `styles/main.css` and `scripts/renderer.js` assume this `index.html` file will eventually reside in the `app/` directory of your project structure, alongside `styles/` and `scripts/` subdirectories.
+    *   If you are testing this HTML file directly from the `skeletons/` directory without moving it, and your `styles` and `scripts` folders are in `../app/`, then you would need to adjust paths (e.g., `../app/styles/main.css`). However, Electron applications are typically packaged with `index.html` at the root of the "app" content.
+
+3.  **Basic Structure:**
+    *   Includes placeholders for a general message, a client list, a form to add new clients, and elements to test IPC communication.
+    *   The `id` attributes are crucial as `renderer.js` will use them to manipulate these elements.
+
+4.  **Accessibility:**
+    *   Added `role="status"` and `aria-live="polite"` to `formMessage` to help screen readers announce status updates from form submissions.
+
+5.  **To make this fully runnable with the other skeletons:**
+    *   You would typically place this file in `project_root/app/index.html`.
+    *   Create `project_root/app/styles/main.css` (can be empty for now).
+    *   Place `electron_renderer_skeleton.js` in `project_root/app/scripts/renderer.js`.
+    *   Place `electron_main_skeleton.js` in `project_root/app/main.js` (and update paths within it accordingly, or place it in the root and update `package.json`'s main field).
+    *   Create a basic `project_root/app/preload.js` if you intend to use the IPC examples.
+    *   Ensure `backend_app_skeleton.py` is in `project_root/backend/` and paths in `electron_main_skeleton.js` point to it correctly.
+
+This HTML file provides the basic UI structure needed for the `electron_renderer_skeleton.js` to interact with.
